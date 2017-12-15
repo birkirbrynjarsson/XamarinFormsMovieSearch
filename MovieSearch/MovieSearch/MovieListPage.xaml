@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieSearch.MovieListPage"
+             Title="Movie list">
+    <ContentPage.Content>
+        <ListView x:Name="ListView"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding Movies}"
+                  SeparatorColor="#DDDDDD"
+                  SelectedItem="{Binding SelectedMovie}">
+            <ListView.RowHeight>
+                <OnPlatform x:TypeArguments="x:Int32">
+                    <On Platform="iOS">60</On>
+                    <On Platform="Android">60</On>
+                    <On Platform="UWP">100</On>
+                </OnPlatform>
+            </ListView.RowHeight>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10,10"
+                              RowSpacing="6">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Title}"
+                                   FontSize="Medium"
+                                   TextColor="#1f03e1" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding ReleaseYear}"
+                                   FontSize="Small"/>
+                            <Image Grid.Row="0"
+                                   Grid.Column="1"
+                                   Grid.RowSpan="2"
+                                   Source="{Binding LocalImageUrl}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
